@@ -39,3 +39,16 @@ function factorialm($a){
     if($a == 0)return 1;
     return factorialm($a - 1) * $a % MOD;
 }
+
+//順列
+function nPm($n, $m){
+    if($m == 0)return 1;
+    return nPm($n, $m - 1) * ($n - $m + 1) % MOD;
+}
+
+//組み合わせ
+function nCm($n, $m){
+    $m = min($m, $n-$m);
+    return divm(nPm($n, $m), factorialm($m));
+}
+
