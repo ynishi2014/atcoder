@@ -18,7 +18,6 @@ function era($n){
     return array_keys($map);
 }
 
-
 //素数判定　-- 1回の判定であれば、エラトステネスの篩を使わないほうが速い
 function isPrime($n){
     $sqrtn = sqrt($n)+1;
@@ -27,3 +26,39 @@ function isPrime($n){
     }
     return true;
 }
+
+//素因数分解 - 連想配列で返す(因数の値 => 因数の個数)
+function factor($M){
+    $rootM = $M**0.5+1;
+    for($j = 2; $j <= $rootM; $j++){
+        if($M%$j == 0){
+            @$map[$j]++;
+            $M/=$j;
+            $rootM = $M**0.5+1;
+            $j--;
+        }
+    }
+    if($M>1){
+        @$map[$M]++;
+    }
+    return $map;
+}
+
+//素因数分解 - 素因数を昇順に列挙
+function factor($M){
+    $f = [];
+    $rootM = $M**0.5+1;
+    for($j = 2; $j <= $rootM; $j++){
+        if($M%$j == 0){
+            $f[] = $j;
+            $M/=$j;
+            $rootM = $M**0.5+1;
+            $j--;
+        }
+    }
+    if($M>1){
+        $f[] = $M;
+    }
+    return $f;
+}
+
