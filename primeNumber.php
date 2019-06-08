@@ -18,3 +18,12 @@ function era($n){
     return array_keys($map);
 }
 
+
+//素数判定　-- 1回の判定であれば、エラトステネスの篩を使わないほうが速い
+function isPrime($n){
+    $sqrtn = sqrt($n)+1;
+    for($i = 2; $i < $sqrtn; $i++){
+        if($n % $i == 0)return false;
+    }
+    return true;
+}
