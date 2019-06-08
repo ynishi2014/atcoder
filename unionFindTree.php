@@ -1,7 +1,7 @@
 <?php
 //1オリジンになっています
 
-//Union find
+//UnionFindTree --- 
 $tree = new UnionFindTree(100);
 
 echo $tree->findRoot(1);
