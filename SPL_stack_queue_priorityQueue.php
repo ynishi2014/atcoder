@@ -56,3 +56,14 @@ echo json_encode($pq->extract()),"\n";
 //{"data":"Two","priority":2}
 //{"data":"One","priority":1}
 
+//DoubleLinkedList -- deque -- 双方向リスト
+$dqueue = new SplDoublyLinkedList();
+
+$dqueue->push(1); // 1
+$dqueue->push(2); //1 2
+$dqueue->unshift(3); //3 1 2
+$dqueue->unshift(4); //4 3 1 2
+echo $dqueue->pop(); //4 3 1 (2)
+echo $dqueue->shift(); //(4) 3 1
+echo $dqueue->shift(); //(3) 1
+echo $dqueue->shift(); //(1)
