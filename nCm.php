@@ -1,7 +1,7 @@
 <?php
 define("MOD", 10**9+7);
 fscanf(STDIN, "%d%d", $n, $k);
- 
+
 nCm($n);//パスカルの三角形を構築
 for($i=1; $i <= $k; $i++){
   echo nCm($n-$k+1, $i) * nCm($k-1, $i-1) % MOD, "\n";
