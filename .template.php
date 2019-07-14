@@ -1,7 +1,10 @@
 <?php
-$n = int();
+$n = str();
 o($n);
 
+function str(){
+  return trim(fgets(STDIN));
+}
 function ints(){
   return array_map("intval", explode(" ", trim(fgets(STDIN))));
 }
