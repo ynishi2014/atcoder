@@ -1,6 +1,7 @@
 <?php
 
-function o($val){
+function o(...$val){
+    if(count($val)==1)$val = array_shift($val);
     $trace = debug_backtrace();
     echo $trace[0]['line'].")";
     if(is_array($val)){
