@@ -1,5 +1,5 @@
 <?php
-$n = str();
+$n = int();
 o($n);
 
 function str(){
