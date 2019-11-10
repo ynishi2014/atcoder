@@ -1,4 +1,20 @@
 <?php
+list($n, $m) = array_map("intval", explode(" ", trim(fgets(STDIN))));
+$di = new Di($n);
+for($i = 0; $i < $m; $i++){
+  list($from, $to, $d) = array_map("intval", explode(" ", trim(fgets(STDIN))));
+  $di->connect($from, $to, $d);
+}
+for($i = 2; $i <= $n; $i++){
+  $di->connect($i, $i - 1, 0);
+}
+$di->solve(1);
+$distance = $di->distance[$n];
+if($distance == $di->inf){
+  echo -1;
+}else{
+  echo $distance;
+}
 
 /**
  * Dijkstra
