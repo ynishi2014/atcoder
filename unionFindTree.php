@@ -2,7 +2,7 @@
 //1オリジンになっています
 
 //UnionFindTree --- 
-$tree = new UnionFindTree(100);
+$tree = new UFT(100);
 
 echo $tree->findRoot(1);
 $tree->unite(1,2);
