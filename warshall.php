@@ -46,7 +46,6 @@ class Wf{
   }
   function connect($a, $b, $c){
     $this->d[$a][$b] = $c;
-    $this->d[$b][$a] = $c;
   }
   function solve(){
     for($k = 1; $k <= $this->n; $k++){
