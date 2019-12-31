@@ -1,5 +1,20 @@
 <?php
 
+//$key以上の値のうち、一番左の値のIndexを返す
+function lower_bound($array, $key){
+    $min = -1;
+    $max = count($array);
+    while($max - $min > 1){
+        $c = intdiv($min + $max, 2);
+        if($array[$c] >= $key){
+            $max = $c;
+        }else{
+            $min = $c;
+        }
+    }
+    return $max;
+}
+
 
 //二分探索　target以下で最大の値の場所を返す
 function bsl($nums, $target) {
