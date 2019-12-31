@@ -1,5 +1,6 @@
 <?php
 
+//昇順に整列した配列に対する操作
 //$key以上の値のうち、一番左の値のIndexを返す
 function lower_bound($array, $key){
     $min = -1;
