@@ -5,7 +5,7 @@ define("MOD", 10**9+7);
 //echo addm(10**9+6,100);
 //echo subm(1,2);
 //echo mulm(10**9+6, 2);
-echo mulm(divm(1,4),4);
+//echo mulm(divm(1,4),4);
 
 //足し算
 function addm($a, $b){
