@@ -8,11 +8,8 @@ class Wf{
   public $n;
   function __construct($n)	{
     $this->n = $n;
-    for($i = 1; $i <= $this->n; $i++){
-      for($j = 1; $j <= $this->n; $j++){
-        $this->d[$i][$j] = PHP_INT_MAX;
-      }  
-    }
+    $array = array_fill(1, $n, PHP_INT_MAX);
+    $this->d = array_fill(1, $n, $array);
     for($i = 1; $i <= $this->n; $i++){
         $this->d[$i][$i] = 0;
     }
@@ -25,15 +22,17 @@ class Wf{
     $this->d[$b][$a] = $c;
   }
   function solve(){
-    for($k = 1; $k <= $this->n; $k++){
-      for($i = 1; $i <= $this->n; $i++){
-        for($j = 1; $j <= $this->n; $j++){
-          if($this->d[$i][$j] > $this->d[$i][$k] + $this->d[$k][$j]){
-            $this->d[$i][$j] = $this->d[$i][$k] + $this->d[$k][$j];
+    $d = &$this->d;
+    $n = $this->n;
+    for($k = 1; $k <= $n; $k++){
+      for($i = 1; $i <= $n; $i++){
+        for($j = 1; $j <= $n; $j++){
+          if($d[$i][$j] > $d[$i][$k] + $d[$k][$j]){
+            $d[$i][$j] = $d[$i][$k] + $d[$k][$j];
           }
         }
       }
     }
-    return $this->d;
+    return $d;
   }
 }
