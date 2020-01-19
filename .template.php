@@ -11,6 +11,8 @@ function ints(){
 function int(){
   return intval(trim(fgets(STDIN)));
 }
+function chmax(&$a,$b){if($a<$b){$a=$b;return 1;}return 0;}
+function chmin(&$a,$b){if($a>$b){$a=$b;return 1;}return 0;}
 
 function o(...$val){
     if(count($val)==1)$val = array_shift($val);
