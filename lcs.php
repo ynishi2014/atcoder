@@ -26,9 +26,9 @@ function lcstr($str1, $str2){
                 $dp[$i][$j] = ($dp[$i-1][$j-1]??'') . $str1[$i];
             }else{
                 if(strlen($dp[$i-1][$j]??'') > strlen($dp[$i][$j-1]??'')){
-                    $dp[$i][$j] = $dp[$i-1][$j]??'3';
+                    $dp[$i][$j] = $dp[$i-1][$j]??'';
                 }else{
-                    $dp[$i][$j] = $dp[$i][$j-1]??'3';
+                    $dp[$i][$j] = $dp[$i][$j-1]??'';
                 }
             }
         }
