@@ -1,6 +1,8 @@
 <?php
 $n = int();
-o($n);
+o([1=>2,3=>4]);
+o([1,2]);
+o([[1,2],2=>[3,5=>4]]);
 
 function str(){
   return trim(fgets(STDIN));
@@ -23,14 +25,30 @@ function o(...$val){
             echo "empty array";
         }elseif(!is_array(current($val))){
             echo "array:";
-            echo implode(" ", $val)."\n";
+            echo implode(" ", addIndex($val))."\n";
         }else{
             echo "array:array\n";
-            foreach($val as $row){
-                echo implode(" ", $row)."\n";
+            if(isCleanArray($val)){
+                foreach($val as $row)echo implode(" ", addIndex($row))."\n";
+            }else{
+                foreach($val as $i => $row)echo "[".$i."] ".implode(" ", addIndex($row))."\n";
             }
         }
     }else{
         echo $val."\n";
     }
+}
+function addIndex($val){
+    if(!isCleanArray($val)){
+        $val = array_map(function($k, $v){return $k.":".$v;}, array_keys($val), $val);
+    }
+    return $val;
+}
+function isCleanArray($array){
+    $clean = true;
+    $i = 0;
+    foreach($array as $k => $v){
+        if($k != $i++)$clean = false;
+    }
+    return $clean;
 }
