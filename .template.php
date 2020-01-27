@@ -24,7 +24,7 @@ function o(...$val){
         if(count($val) == 0){
             echo "empty array";
         }elseif(!is_array(current($val))){
-            echo "array:";
+            echo "array: ";
             echo implode(" ", addIndex($val))."\n";
         }else{
             echo "array:array\n";
