@@ -1,8 +1,6 @@
 <?php
 $n = int();
-o([1=>2,3=>4]);
-o([1,2]);
-o([[1,2],2=>[3,5=>4]]);
+o($n);
 
 function str(){
   return trim(fgets(STDIN));
