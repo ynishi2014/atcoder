@@ -2,21 +2,18 @@
 
 //エラトステネスの篩　計算量はO(NloglogN)なので、ほぼ定数。素敵。
 function era($n){
-    for($i = 2; $i <= $n; $i++){
-        $map[$i] = true;
-    }
+    $map = array_fill(2,$n-1, true);
     $rootn = sqrt($n);
-    $c = 0;
     for($i = 2; $i <= $rootn; $i++){
         if(isset($map[$i])){
-            for($j = $i*2; $j <= $n; $j+=$i){
-                $c++;
+            for($j = $i*$i; $j <= $n; $j+=$i){
                 unset($map[$j]);
             }
         }
     }
     return array_keys($map);
 }
+
 
 //素数判定　-- 1回の判定であれば、エラトステネスの篩を使わないほうが速い
 function isPrime($n){
