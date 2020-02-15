@@ -4,14 +4,14 @@
 //UnionFindTree --- 
 $tree = new UFT(100);
 
-echo $tree->findRoot(1);
+echo $tree->getRoot(1);
 $tree->unite(1,2);
 
-echo $tree->findRoot(1);
-echo $tree->findRoot(2);
-echo $tree->findRoot(3);
+echo $tree->getRoot(1);
+echo $tree->getRoot(2);
+echo $tree->getRoot(3);
 $tree->unite(1,3);
-echo $tree->findRoot(3);
+echo $tree->getRoot(3);
 
 
 class UFT{
