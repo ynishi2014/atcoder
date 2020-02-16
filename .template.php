@@ -92,3 +92,12 @@ function lcmAll($array){
 function lcm($a, $b) {
     return $a / gcd($a, $b) * $b;
 }
+//ビットカウント-1の数を数える
+function popcount($x){
+    $con = 0;
+    while ($x) {
+        $x &= $x-1;
+        ++$con;
+    }
+    return $con;
+}
