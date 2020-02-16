@@ -2,7 +2,7 @@
 /**
  * 1のビットの数を高速にカウントします
  */
-function countBits($x){
+function popcount($x){
     $con = 0;
     while ($x) {
         $x &= $x-1;
