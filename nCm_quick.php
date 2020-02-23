@@ -20,3 +20,7 @@ function nCm($n, $m){
     if($n < 0 || $n - $m < 0)return 0;
     return $f[$n] * $invf[$n-$m] % MOD * $invf[$m] % MOD;
 }
+function nHm($n, $m){
+    global $f, $invf;
+    return nCm($n+$m-1, $m);
+}
