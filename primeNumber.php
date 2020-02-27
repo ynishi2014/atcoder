@@ -29,14 +29,16 @@ function factor($M){
     $rootM = $M**0.5+1;
     for($j = 2; $j <= $rootM; $j++){
         if($M%$j == 0){
-            @$map[$j]++;
+            if(!isset($map[$j]))$map[$j] = 0;
+            $map[$j]++;
             $M/=$j;
             $rootM = $M**0.5+1;
             $j--;
         }
     }
     if($M>1){
-        @$map[$M]++;
+        if(!isset($map[$M]))$map[$M] = 0;
+        $map[$M]++;
     }
     return $map;
 }
