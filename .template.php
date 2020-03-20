@@ -1,6 +1,6 @@
 <?php
-$n = int();
-o($n);
+list($N) = ints();
+o($N);
 
 function str(){
   return trim(fgets(STDIN));
