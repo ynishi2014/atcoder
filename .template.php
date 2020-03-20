@@ -2,6 +2,37 @@
 list($N) = ints();
 o($N);
 
+function dfs($current, $from = -1, $d = 0){
+  global $G, $distance;
+  $distance[$current] = $d;
+  foreach($G[$current] as $to){
+    if($from != $to){
+      dfs($to, $current, $d + 1);
+    }
+  }
+}
+function loadTree($N = false){
+  if($N === false)$N = $GLOBALS['N'];
+  return loadGraph($N, $N-1);
+}
+function loadGraph($N = false, $M = false, $both = true){
+  if($N === false)$N = $GLOBALS['N'];
+  if($M === false)$N = $GLOBALS['M'];
+  $G = array_fill(1, $N, []);
+  for($i = 0; $i < $M; $i++){
+    $values = ints();
+    if(count($values) == 2){
+      list($a, $b) = $values;
+      $G[$a][] = $b;
+      if($both)$G[$b][] = $a;
+    }else{
+      list($a, $b, $d) = $values;
+      $G[$a][] = [$b, $d];
+      if($both)$G[$b][] = [$a, $d];
+    }
+  }
+  return $G;
+}
 function str(){
   return trim(fgets(STDIN));
 }
