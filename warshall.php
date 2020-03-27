@@ -37,7 +37,6 @@ class Wf{
         }
       }
     }
-    $this->d = $d;
-    return $d;
+    return $this->d = $d;
   }
 }
