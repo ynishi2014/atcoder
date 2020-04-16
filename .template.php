@@ -1,5 +1,5 @@
 <?php
-list($N) = ints();
+[$N] = ints();
 o($N);
 
 function str(){return trim(fgets(STDIN));}
