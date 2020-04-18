@@ -46,7 +46,7 @@ function loadTree($N = false){
 }
 function loadGraph($N = false, $M = false, $both = true){
   if($N === false)$N = $GLOBALS['N'];
-  if($M === false)$N = $GLOBALS['M'];
+  if($M === false)$M = $GLOBALS['M'];
   $G = array_fill(1, $N, []);
   for($i = 0; $i < $M; $i++){
     $values = ints();
