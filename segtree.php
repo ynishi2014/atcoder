@@ -11,7 +11,7 @@ class SegTree{
     if(is_array($n)){
       $array = $n;
       $n = count($array);
-      $this->bits = max(1, ceil(log($n)/log(2)));
+      $this->bits = max(1, ceil(log($n+1)/log(2)));
       for($i = $n, $I = 2**$this->bits; $i < $I; ++$i){
         $array[] = $GLOBALS['zero'];
       }
