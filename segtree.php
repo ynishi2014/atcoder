@@ -1,5 +1,6 @@
 <?php
 function op($a, $b){return $a | $b;}
+$zero = 0;
 
 //$seg = new SegTree($array);
 
@@ -12,7 +13,7 @@ class SegTree{
       $n = count($array);
       $this->bits = max(1, ceil(log($n)/log(2)));
       for($i = $n, $I = 2**$this->bits; $i < $I; ++$i){
-        $array[] = 0;
+        $array[] = $GLOBALS['zero'];
       }
       $this->tree[0] = $array;
       $this->rollupAll();
@@ -39,7 +40,7 @@ class SegTree{
     }
   }
   function get($f, $t){
-    $sum = 0;
+    $sum = $GLOBALS['zero'];
     $tree = $this->tree;
     $bits = $this->bits;
     $i = 0;
