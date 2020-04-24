@@ -11,3 +11,17 @@ function lis($A){
     }
     return $longest;
 }
+
+function lower_bound($array, $key){
+  $min = -1;
+  $max = count($array);
+  while($max - $min > 1){
+    $c = intdiv($min + $max, 2);
+    if($array[$c] >= $key){
+      $max = $c;
+    }else{
+      $min = $c;
+    }
+  }
+  return $max;
+}
