@@ -16,7 +16,7 @@ class Di{
     }
   }
   function connect($from, $to, $cost){
-    $this->graph[$from][] = [$to, $cost];
+    $this->G[$from][] = [$to, $cost];
   }
   function solve($from){
     $pq = new SplPriorityQueue();
