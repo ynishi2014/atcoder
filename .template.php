@@ -3,7 +3,11 @@
 o($N);
 
 function str(){return trim(fgets(STDIN));}
-function ints(){return array_map('intval',explode(' ',trim(fgets(STDIN))));}
+function ints($n = false){
+  if($n===false){
+    return array_map('intval',explode(' ',trim(fgets(STDIN))));
+  }else{$ret = [];for($i = 0; $i < $n; $i++)foreach(array_map('intval',explode(' ',trim(fgets(STDIN)))) as $j => $v)$ret[$j][] = $v;return $ret;}
+}
 function int(){return intval(trim(fgets(STDIN)));}
 function chmax(&$a,$b){if($a<$b){$a=$b;return 1;}return 0;}
 function chmin(&$a,$b){if($a>$b){$a=$b;return 1;}return 0;}
