@@ -56,13 +56,23 @@ function loadGraph($N = false, $M = false, $both = true){
     $values = ints();
     if(count($values) == 2){
       list($a, $b) = $values;
-      $G[$a][] = $b;
-      if($both)$G[$b][] = $a;
+      if($both == 0){
+        $G[$a][] = $b;
+      }elseif($both == 1){
+        $G[$a][] = $b;
+        $G[$b][] = $a;
+      }else{
+        $G[$b][] = $a;
+      }
     }else{
       list($a, $b, $d) = $values;
-      $G[$a][] = [$b, $d];
-      if($both)$G[$b][] = [$a, $d];
+      if($both == 0){
+        $G[$a][] = [$b, $d];
+      }elseif($both == 1){
+        $G[$a][] = [$b, $d];
+        $G[$b][] = [$a, $d];
+      }else{
+        $G[$b][] = [$a, $d];
+      }
     }
   }
-  return $G;
-}
