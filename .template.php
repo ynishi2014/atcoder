@@ -76,3 +76,5 @@ function loadGraph($N = false, $M = false, $both = true){
       }
     }
   }
+  return $G;
+}
