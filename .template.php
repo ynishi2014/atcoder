@@ -16,7 +16,7 @@ function o(...$val){
     if(count($val)==1)$val=array_shift($val);
     echo debug_backtrace()[0]['line'].")";
     if(is_array($val)){
-        if(count($val) == 0)echo "empty array";
+        if(count($val) == 0)echo "empty array\n";
         elseif(!is_array(current($val)))echo "array: ",implode(" ", addIndex($val)),"\n";
         else{
             echo "array:array\n";
