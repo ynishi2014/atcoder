@@ -33,17 +33,6 @@ function gcdAll($array){$gcd=$array[0];for($i=1,$I=count($array);$i<$I;++$i){$gc
 function gcd($m, $n){if(!$n)return $m;return gcd($n, $m % $n);}
 function lcmAll($array){$lcm=$array[0];for($i=1,$I=count($array);$i<$I;++$i){$lcm=lcm($lcm,$array[$i]);}return $lcm;}
 function lcm($a, $b) {return $a / gcd($a, $b) * $b;}
-
-function dfs($current, $from = -1, $d = 0){
-  global $G, $distance;
-  $distance[$current] = $d;
-  foreach($G[$current] as $to){
-    if($from != $to){
-      dfs($to, $current, $d + 1);
-    }
-  }
-}
-
 function loadTree($N = false){
   if($N === false)$N = $GLOBALS['N'];
   return loadGraph($N, $N-1);
