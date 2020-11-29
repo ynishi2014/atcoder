@@ -10,13 +10,12 @@ class Di{
   public $from;
   public $inf = 10**18;
   function __construct($n) {
-    for($i = 1; $i <= $n; $i++){
-      $this->distance[$i] = $this->inf;
-      //$this->from[$i] = 0;
-    }
+    $this->distance = array_fill(1, $n, $this->inf);
+//    $this->from = array_fill(1,$n,0);
+    $this->G = array_fill(1,$n,[]);
   }
   function connect($from, $to, $cost){
-    $this->G[$from][] = [$to, $cost];
+    $this->G[$from][$to] = $cost;
   }
   function solve($from){
     $pq = new SplPriorityQueue();
@@ -27,13 +26,15 @@ class Di{
     $distance[$from] = 0;
     while($pq->count()){
       $f = $pq->extract();
-      if(!isset($G[$f]))continue;
-      foreach($G[$f] as list($t, $dist)){
-        $new = $distance[$f] + $dist;
-        if($distance[$t] > $new){
-          $distance[$t] = $new;
-          //$tfrom[$t] = $f;
-          $pq->insert($t, -$new);
+      if(!isset($map[$f])){
+        $map[$f] = true;
+        foreach($G[$f] as $t => $dist){
+          $new = $distance[$f] + $dist;
+          if($distance[$t] > $new){
+            $distance[$t] = $new;
+            //$tfrom[$t] = $f;
+            $pq->insert($t, -$new);
+          }
         }
       }
     }
