@@ -52,3 +52,16 @@ function nCm($n, $m){
     return divm(nPm($n, $m), factorialm($m));
 }
 
+//逆元の導出・法が素数でなくても動作する
+function modinv($a, $m){
+    $b = $m; $u = 1; $v = 0;
+    while($b){
+        $t = intdiv($a, $b);
+        $a -= $t * $b; [$a, $b] = [$b, $a];
+        $u -= $t * $v; [$u, $v] = [$v, $u];
+    }
+    $u %= $m;
+    if($u < 0)$u+=$m;
+    return $u;
+}
+
