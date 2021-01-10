@@ -1,6 +1,10 @@
 <?php
 [$N] = ints();
+
+
 o($N);
+
+
 
 function str(){return trim(fgets(STDIN));}
 function ints($n = false){
