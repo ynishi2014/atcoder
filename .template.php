@@ -17,17 +17,17 @@ function chmax(&$a,$b){if($a<$b){$a=$b;return 1;}return 0;}
 function chmin(&$a,$b){if($a>$b){$a=$b;return 1;}return 0;}
 function popcount($x){$c=0;while($x){$x&=$x-1;++$c;}return$c;}
 function o(...$val){
-    if(count($val)==1)$val=array_shift($val);
-    echo debug_backtrace()[0]['line'].")";
-    if(is_array($val)){
-        if(count($val) == 0)echo "empty array\n";
-        elseif(!is_array(current($val)))echo "array: ",implode(" ", addIndex($val)),"\n";
-        else{
-            echo "array:array\n";
-            if(isCleanArray($val))foreach($val as $row)echo implode(" ", addIndex($row)),"\n";
-            else foreach($val as $i => $row)echo "[".$i."] ".implode(" ", addIndex($row)),"\n";
-        }
-    }else echo $val."\n";
+  if(count($val)==1)$val=array_shift($val);
+  echo debug_backtrace()[0]['line'].")";
+  if(is_array($val)){
+    if(count($val) == 0)echo "empty array\n";
+    elseif(!is_array(current($val)))echo "array: ",implode(" ", addIndex($val)),"\n";
+    else{
+      echo "array:array\n";
+      if(isCleanArray($val))foreach($val as $row)echo implode(" ", addIndex($row)),"\n";
+      else foreach($val as $i => $row)echo "[".$i."] ".implode(" ", addIndex($row)),"\n";
+    }
+  }else echo $val."\n";
 }
 function addIndex($val){if(!isCleanArray($val)){$val = array_map(function($k, $v){return $k.":".$v;}, array_keys($val), $val);}return $val;}
 function isCleanArray($array){$clean=true;$i = 0;foreach($array as $k=>$v){if($k != $i++)$clean = false;}return $clean;}
