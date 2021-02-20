@@ -8,9 +8,8 @@ class Wf{
   public $n;
   function __construct($n)	{
     $this->n = $n;
-    $array = array_fill(1, $n, 10**18);
-    $this->d = array_fill(1, $n, $array);
-    for($i = 1; $i <= $this->n; $i++){
+    $this->d = array_fill(1, $n, array_fill(1, $n, 10**18));
+    for($i = 1; $i <= $this->n; ++$i){
         $this->d[$i][$i] = 0;
     }
   }
@@ -22,6 +21,23 @@ class Wf{
     if(is_array($a))list($a, $b, $c) = $a;
     $this->d[$a][$b] = $c;
     $this->d[$b][$a] = $c;
+  }
+  function shrink($a, $b = false, $c = 1){
+    if(is_array($a))list($a, $b, $c) = $a;
+    $n = $this->n;
+    $d = &$this->d;
+    $da = $d[$a];
+    $db = $d[$b];
+    for($i = 1; $i <= $n; ++$i){
+      $di = &$d[$i];
+      for($j = 1; $j <= $n; ++$j){
+        $new = min($di[$a] + $db[$j], $di[$b] + $da[$j]) + $c;
+        if($di[$j] > $new){
+          $di[$j] = $new;
+        }
+      }
+    }
+    return $this->d;
   }
   function solve(){
     $d = $this->d;
