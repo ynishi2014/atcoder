@@ -9,7 +9,8 @@ o($N);
 function str(){return trim(fgets(STDIN));}
 function ints($n = false){
   if($n===false){
-    return array_map('intval',explode(' ',trim(fgets(STDIN))));
+    $str = trim(fgets(STDIN));if($str == '')return [];
+    return array_map('intval',explode(' ',$str));
   }else{$ret = [];for($i = 0; $i < $n; $i++)foreach(array_map('intval',explode(' ',trim(fgets(STDIN)))) as $j => $v)$ret[$j][] = $v;return $ret;}
 }
 function int(){return intval(trim(fgets(STDIN)));}
