@@ -17,6 +17,7 @@ function int(){return intval(trim(fgets(STDIN)));}
 function chmax(&$a,$b){if($a<$b){$a=$b;return 1;}return 0;}
 function chmin(&$a,$b){if($a>$b){$a=$b;return 1;}return 0;}
 function popcount($x){$c=0;while($x){$x&=$x-1;++$c;}return$c;}
+function swap(&$a,&$b){$tmp=$a;$a=$b;$b=$tmp;}
 function o(...$val){
   if(count($val)==1)$val=array_shift($val);
   echo debug_backtrace()[0]['line'].")";
