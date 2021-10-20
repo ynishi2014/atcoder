@@ -48,20 +48,26 @@ class SegTree{
   function get($f, $t){
     $sum = $this->zero;
     $tree = $this->tree;
-    $bits = $this->bits;
     $op = $this->op;
     $i = 0;
+    $left = $right = [];
     while($f!=$t){
       $treei = $tree[$i];
       if(($f >> $i) & 1 == 1){
-        $sum = $op($sum, $treei[$f>>$i]);
+        $left[] = $treei[$f>>$i];
         $f+=1<<$i;
       }
       if(($t >> $i) & 1 == 1){
-        $sum = $op($sum, $treei[($t>>$i)-1]);
+        $right[] = $treei[($t>>$i)-1];
         $t-=1<<$i;
       }
       ++$i;
+    }
+    foreach($left as $v){
+      $sum = $op($sum, $v);
+    }
+    foreach(array_reverse($right) as $v){
+      $sum = $op($sum, $v);
     }
     return $sum;
   }
