@@ -19,7 +19,7 @@ function subm($a, $b){
 
 //掛け算
 function mulm($a, $b){
-    return ($a * $b) % MOD;
+    return (($a%MOD) * ($b%MOD)) % MOD;
 }
 
 //割り算
