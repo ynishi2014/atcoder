@@ -3,7 +3,6 @@
 class Trie{// BinaryTrie
   public $bitlen;
   public $fmt;
-  public $root;
   public $next = 1;
   public function __construct($bitlen = 63, $maxQuery = 2*10**5){
     $this->bitlen = $bitlen;
@@ -52,7 +51,7 @@ class Trie{// BinaryTrie
           $pos-= $this->cnt[$p0[$node]];
         }
         $node = $p1[$node];
-        $num++;
+        ++$num;
       }else{
         $node = $p0[$node];
       }
@@ -73,8 +72,11 @@ class Trie{// BinaryTrie
     }
     return $node->counter; 
   }
-  public function countAll(){
-    return $this->root->counter;
+  public function count_all(){
+    return $this->cnt[0];
+  }
+  public function count_upper($k){
+    return $this->countAll() - $this->count_lower($k+1);
   }
   public function count_lower($k){
     $bits = sprintf($this->fmt, $k);
