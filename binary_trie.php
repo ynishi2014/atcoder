@@ -60,17 +60,21 @@ class Trie{// BinaryTrie
   }
   public function count($k = false){
     $bits = sprintf($this->fmt, $k);
-    $node = $this->root;
-    foreach(str_split($bits) as $bit){
-      if($bit == '0'){
-        $node = $node->zero;
+    $node = 0;
+    $p0 = $this->p0;
+    $p1 = $this->p1;
+    $cnt = $this->cnt;
+    $str = sprintf($this->fmt, $k);
+    for($i = 0, $I = $this->bitlen; $i < $I; ++$i){
+      if($str[$i] == '0'){
+        $node = $p0[$node];
         if(!$node)return 0;
       }else{
-        $node = $node->one;
+        $node = $p1[$node];
         if(!$node)return 0;
       }
     }
-    return $node->counter; 
+    return $cnt[$node];
   }
   public function count_all(){
     return $this->cnt[0];
