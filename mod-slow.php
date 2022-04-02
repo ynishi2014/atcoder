@@ -29,9 +29,14 @@ function divm($a, $b){
 
 //累乗
 function powerm($a, $b){
-    if($b == 0)return 1;
-    if($b & 1)return (powerm($a, $b>>1)**2 % MOD) * $a % MOD;
-    return powerm($a, $b>>1)**2 % MOD;
+    $a %= MOD;
+    $ret = 1;
+    while($b){
+      if($b&1)$ret=$ret*$a%MOD; 
+      $a = $a*$a%MOD;
+      $b >>= 1;
+    }
+    return $ret;
 }
 
 //階乗
