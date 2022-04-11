@@ -38,7 +38,7 @@ class Trie{// BinaryTrie
   public function delete($k){$this->add($k, -1);}
   public function lower_bound($k){return $this->count_lower($k);}
   public function upper_bound($k){return $this->count_lower($k+1);}
-  public function nth($pos){
+  public function nth($pos){// 1-origin
     $node = 0;
     $num = 0;
     $cnt = $this->cnt;
@@ -101,5 +101,21 @@ class Trie{// BinaryTrie
       }
     }
     return $c;
+  }
+  public function max(){
+    return $this->nth($this->cnt[0]);
+  }
+  public function min(){
+    return $this->nth(1);
+  }
+  public function popMax(){
+    $max = $this->nth($this->cnt[0]);
+    $this->add($max, -1);
+    return $max;
+  }
+  public function popMin(){
+    $min = $this->nth(1);
+    $this->add($min, -1);
+    return $min;
   }
 }
