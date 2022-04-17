@@ -20,7 +20,7 @@ echo maxFlow(0, $N), "\n";
 function maxFlow($from, $goal){
     global $done, $graph;
     $flow = 0;
-    while($ret = dfs(-1, 0, $goal)){
+    while($ret = dfs(-1, $from, $goal)){
         [$path, $capacity] = $ret;
         $flow += $capacity;
         for($i = 0; $i < count($path) - 1; $i++){
