@@ -22,7 +22,7 @@ function maxFlow($from, $goal){
     $flow = 0;
     while($ret = dfs(-1, 0, $goal)){
         [$path, $capacity] = $ret;
-        $flow++;
+        $flow += $capacity;
         for($i = 0; $i < count($path) - 1; $i++){
             $graph[$path[$i]][$path[$i+1]]-=$capacity;
             if($graph[$path[$i]][$path[$i+1]] == 0){
