@@ -3,7 +3,7 @@
 $P = ints();
 [$A, $B] = ints($E);
 
-$graph = array_fill(0, $N, []);
+$graph = array_fill(1, $N, []);
 for($i = 0; $i < $E; $i++){
     $graph[$A[$i]][$B[$i]] = 1;
     $graph[$B[$i]][$A[$i]] = 1;
@@ -13,38 +13,38 @@ for($i = 0; $i < $G; $i++){
 //    $graph[$N][$P[$i]] = 1;
 }
 
-echo maxFlow($graph, 0, $N), "\n";
+echo maxFlow(0, $N), "\n";
 
 //https://atcoder.jp/contests/abc010/submissions/18064988
 
-function maxFlow($graph, $from, $goal){
-    global $done;
+function maxFlow($from, $goal){
+    global $done, $graph;
     $flow = 0;
-    while($ret = dfs($graph, -1, 0, $goal)){
+    while($ret = dfs(-1, 0, $goal)){
         [$path, $capacity] = $ret;
         $flow++;
         for($i = 0; $i < count($path) - 1; $i++){
             $graph[$path[$i]][$path[$i+1]]-=$capacity;
             if($graph[$path[$i]][$path[$i+1]] == 0){
-                unset($graph[$path[$i]][$path[$i+1]]);
+                unset($graph[$path[$i]][$path[$i+1]]); // 容量ゼロなら消す
             }
             if(!isset($graph[$path[$i+1]][$path[$i]])){
-                $graph[$path[$i+1]][$path[$i]] = 0;
+                $graph[$path[$i+1]][$path[$i]] = 0; // 逆辺がなければ張る
             }
-            $graph[$path[$i+1]][$path[$i]]+=$capacity;
+            $graph[$path[$i+1]][$path[$i]]+=$capacity; // 逆辺の容量を増やす
         }
         $done = [0=>true];
     }
     return $flow;
 }
-function dfs($graph, $from, $current, $goal, $path = [], $min = 10**10){
-    global $done;
+function dfs($from, $current, $goal, $path = [], $min = 10**18){
+    global $done, $graph;
     $path[] = $current;
     if($current == $goal)return [$path, $min];
     foreach($graph[$current] as $to => $capacity){
         if(!isset($done[$to])){
             $done[$to] = true;
-            $ret = dfs($graph, $current, $to, $goal, $path, min($min, $capacity));
+            $ret = dfs($current, $to, $goal, $path, min($min, $capacity));
             if($ret){
                 return $ret;
             }
