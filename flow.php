@@ -20,6 +20,7 @@ echo maxFlow(0, $N), "\n";
 function maxFlow($from, $goal){
     global $done, $graph;
     $flow = 0;
+    $done = [$from=>true];
     while($ret = dfs(-1, $from, $goal)){
         [$path, $capacity] = $ret;
         $flow += $capacity;
@@ -33,7 +34,7 @@ function maxFlow($from, $goal){
             }
             $graph[$path[$i+1]][$path[$i]]+=$capacity; // 逆辺の容量を増やす
         }
-        $done = [0=>true];
+        $done = [$from=>true];
     }
     return $flow;
 }
