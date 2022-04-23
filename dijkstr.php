@@ -15,7 +15,11 @@ class Di{
     $this->G = array_fill(1,$n,[]);
   }
   function connect($from, $to, $cost){
-    $this->G[$from][$to] = $cost;
+    if(isset($this->G[$from][$to])){
+      $this->G[$from][$to] = min($this->G[$from][$to], $cost);
+    }else{
+      $this->G[$from][$to] = $cost;
+    }
   }
   function solve($from){
     $pq = new SplPriorityQueue();
