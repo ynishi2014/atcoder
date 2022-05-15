@@ -17,6 +17,26 @@ class BIT{
         }
         return $sum;
     }
+    public function sumBetween($i, $j){
+        return $this->sum($j) - $this->sum($i-1);
+    }
+    public function nth($x){ // 1-origin O(logN * logN) // TODO:高速化
+        $ng = 0;
+        $ok = $this->N;
+        while($ok - $ng > 1){
+            $mid = ($ok+$ng)>>1;
+            if($this->sum($mid)>=$x){
+                $ok = $mid;
+            }else{
+                $ng = $mid;
+            }
+        }
+        return $ok;
+    }
+    public function set($i, $x){
+        $old = $this->sumBetween($i, $i);
+        $this->add($i, $x-$old);
+    }
     public function add($i, $x){
         $N = $this->N;
         $tree = &$this->tree;
