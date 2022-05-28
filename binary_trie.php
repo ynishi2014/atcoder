@@ -118,4 +118,11 @@ class Trie{// BinaryTrie
     $this->add($min, -1);
     return $min;
   }
+  public function dump(){
+    for($i = 1, $I = $this->count_all(); $i <= $I; ){
+      $count = $this->count($this->nth($i));
+      o($i.":".$this->nth($i).":".$count);
+      $i+=$count;
+    }
+  }
 }
