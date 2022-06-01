@@ -24,7 +24,7 @@ class SegTree{
     }else{
       $this->bits = max(1, ceil(log($n)/log(2)));
       for($i = 0; $i < $this->bits; ++$i){
-        $this->tree[$i] = array_fill(0, 2**($this->bits-$i), 0);
+        $this->tree[$i] = array_fill(0, 2**($this->bits-$i), );
       }
     }
   }
