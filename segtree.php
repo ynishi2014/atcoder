@@ -24,7 +24,7 @@ class SegTree{
     }else{
       $this->bits = max(1, ceil(log($n)/log(2)));
       for($i = 0; $i < $this->bits; ++$i){
-        $this->tree[$i] = array_fill(0, 2**($this->bits-$i), );
+        $this->tree[$i] = array_fill(0, 2**($this->bits-$i), $zero);
       }
     }
   }
@@ -50,15 +50,15 @@ class SegTree{
     $tree = $this->tree;
     $op = $this->op;
     $i = 0;
-    $left = $right = [];
+    $left = []; $right = [];
     while($f!=$t){
       $treei = $tree[$i];
-      if(($f >> $i) & 1 == 1){
+      if(($f >> $i) & 1){
         $left[] = $treei[$f>>$i];
         $f+=1<<$i;
       }
-      if(($t >> $i) & 1 == 1){
-        $right[] = $treei[($t>>$i)-1];
+      if(($t >> $i) & 1){
+        $right[] = $treei[($t>>$i) - 1];
         $t-=1<<$i;
       }
       ++$i;
@@ -66,8 +66,8 @@ class SegTree{
     foreach($left as $v){
       $sum = $op($sum, $v);
     }
-    foreach(array_reverse($right) as $v){
-      $sum = $op($sum, $v);
+    for($i = count($right)-1; $i >= 0 ; --$i){
+      $sum = $op($sum, $right[$i]);
     }
     return $sum;
   }
