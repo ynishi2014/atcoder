@@ -23,6 +23,9 @@ class StrongConnectionDecomposition{
         foreach(array_reverse($this->startArray) as $start){
             $this->dfs2($start, $num++);
         }
+        foreach($this->group as $group){
+          $this->GG[$group] = [];
+        }
         foreach($this->G as $from => $toArray){
             foreach($toArray as $to){
                 if($this->group[$from]!=$this->group[$to]){
@@ -57,10 +60,11 @@ class StrongConnectionDecomposition{
 }
 class TSORT{
     static function sort($G){
-        global $__G__, $ans;
+        global $__G__, $ans, $visited;
+        $visited = [];
         $__G__ = $G;
         $ans = [];
-        for($i = 1; $i <= count($G); $i++)TSORT::visit($i);
+        foreach($G as $i => $_)TSORT::visit($i);
         return array_reverse($ans);
     }
     static function visit($i){
