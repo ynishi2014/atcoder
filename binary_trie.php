@@ -44,11 +44,12 @@ class Trie{// BinaryTrie
     $cnt = $this->cnt;
     $p0 = $this->p0;
     $p1 = $this->p1;
-    for($i = 0; $i < $this->bitlen; ++$i){
+    $len = $this->bitlen;
+    for($i = 0; $i < $len ; ++$i){
       $num <<= 1;
       if(!$p0[$node] || $pos > $cnt[$p0[$node]]){
         if($p0[$node]){
-          $pos-= $this->cnt[$p0[$node]];
+          $pos-= $cnt[$p0[$node]];
         }
         $node = $p1[$node];
         ++$num;
@@ -80,7 +81,7 @@ class Trie{// BinaryTrie
     return $this->cnt[0];
   }
   public function count_upper($k){
-    return $this->countAll() - $this->count_lower($k+1);
+    return $this->count_all() - $this->count_lower($k+1);
   }
   public function count_lower($k){
     $bits = sprintf($this->fmt, $k);
