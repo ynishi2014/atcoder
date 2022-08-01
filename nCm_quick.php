@@ -17,7 +17,7 @@ function prepareMod($n){
 }
 function nCm($n, $m){
     global $f, $invf;
-    if($n < 0 || $n - $m < 0)return 0;
+    if($n < 0 || $n - $m < 0 || $m < 0)return 0;
     return $f[$n] * $invf[$n-$m] % MOD * $invf[$m] % MOD;
 }
 function nHm($n, $m){
