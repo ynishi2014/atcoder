@@ -17,6 +17,9 @@ function era($n){
 
 //素数判定　-- 1回の判定であれば、エラトステネスの篩を使わないほうが速い
 function isPrime($n){
+    if(function_exists("gmp_prob_prime")){//ミラーラビン素数判定法
+      return gmp_prob_prime($n, 7);
+    }
     if($n == 1)return false;
     $sqrtn = sqrt($n)+0.01;
     for($i = 2; $i < $sqrtn; $i++){
