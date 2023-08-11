@@ -9,5 +9,5 @@ function divisor($n){
         }
     }
     sort($f);
-    return array_unique($f);
+    return array_values(array_unique($f));
 }
