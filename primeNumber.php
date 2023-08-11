@@ -30,6 +30,7 @@ function isPrime($n){
 
 //素因数分解 - 連想配列で返す(因数の値 => 因数の個数)
 function factor($M){
+  $map = [];
     $rootM = $M**0.5+1;
     for($j = 2; $j <= $rootM; $j++){
         if($M%$j == 0){
