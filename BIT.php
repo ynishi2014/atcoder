@@ -3,12 +3,14 @@
 class BIT{
   // 注意: 1-origin
   public $tree;
+  public $raw;
   public $N;
   public function __construct($N){
     $bits = sprintf("%b", $N);
     $this->d = 2**(strlen($bits)-1);
     $this->tree = array_fill(0, $N+1, 0);
     $this->N = $N;
+    //$this->raw = array_fill(1, $N+1, 0);
   }
   public function max(){return $this->nth($this->sum($this->N));}
   public function min(){return $this->nth(1);}
@@ -41,8 +43,10 @@ class BIT{
   public function set($i, $x){
     $old = $this->sumBetween($i, $i);
     $this->add($i, $x-$old);
+    //$this->raw[$i]+=$x-$old;
   }
   public function add($i, $x){
+    //$this->raw[$i]+=$x;
     $N = $this->N;
     $tree = &$this->tree;
     while($i <= $N){
