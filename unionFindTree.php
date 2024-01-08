@@ -42,8 +42,8 @@ class UFT{
     }
   }
   public function unite($i, $j){
-    $rootI = $this->getRoot($j);
-    $rootJ = $this->getRoot($i);
+    $rootI = $this->getRoot($i);
+    $rootJ = $this->getRoot($j);
     if($rootJ == $rootI)return false;//元から同じグループ
     if($this->rank[$rootI] > $this->rank[$rootJ])list($rootI, $rootJ) = [$rootJ, $rootI];//Rank(J)>Rank(I)に揃えておく
     $this->parent[$rootI] = $rootJ;
