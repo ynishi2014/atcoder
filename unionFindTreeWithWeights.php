@@ -1,4 +1,5 @@
 <?php
+// https://atcoder.jp/contests/abc328/tasks/abc328_f
 [$N, $Q] = ints();
 $uft = new UFT($N);
 $ret = [];
