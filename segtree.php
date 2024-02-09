@@ -39,10 +39,12 @@ class SegTree{
     }
   }
   function set($i, $amount){
-    $this->tree[0][$i] = $amount;
+    $tree = &$this->tree;
+    $tree[0][$i] = $amount;
     $op = $this->op;
     for($j = 1, $J = $this->bits; $j < $J; ++$j){
-      $this->tree[$j][$i>>$j] = $op($this->tree[$j-1][$i>>$j<<1], $this->tree[$j-1][($i>>$j<<1) + 1]);
+      $ij = $i >> $j;$treejm = $tree[$j-1];
+      $tree[$j][$ij] = $op($treejm[$ij<<1], $treejm[($ij<<1) + 1]);
     }
   }
   function get($f, $t){
@@ -54,7 +56,6 @@ class SegTree{
       $treei = $tree[$i];
       if(($f >> $i) & 1){
         $sum = $op($sum, $treei[$f>>$i]);
-
         $f+=1<<$i;
       }
       if(($t >> $i) & 1){
