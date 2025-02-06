@@ -26,12 +26,12 @@ class OrderedSet implements IteratorAggregate {
     $this->root = null;
     $this->count = 0;
     if ($cmp === null) {
-    $this->cmp = function($a, $b) {
-      if ($a == $b) return 0;
-      return ($a < $b) ? -1 : 1;
-    };
+      $this->cmp = function ($a, $b) {
+        if ($a == $b) return 0;
+        return ($a < $b) ? -1 : 1;
+      };
     } else {
-    $this->cmp = $cmp;
+      $this->cmp = $cmp;
     }
   }
 
@@ -187,10 +187,36 @@ class OrderedSet implements IteratorAggregate {
     }
     return $result;
   }
+
+  public function prev_bound($value) {
+    $node = $this->root;
+    $result = null;
+    $cmp = $this->cmp;
+    while ($node !== null) {
+      // 現在のノードの値が $value より小さいなら候補に更新し、
+      // もっと大きな値を求めるため右の子に進む
+      if ($cmp($node->value, $value) < 0) {
+        $result = $node->value;
+        $node = $node->right;
+      } else {
+        // $node->value が $value 以上なら、左側に小さい値があるかもしれないので左に進む
+        $node = $node->left;
+      }
+    }
+    return $result;
+  }
 }
+
 $set = new OrderedSet();
-$time = microtime(true);
-for ($i = 0; $i < 500000; $i++) {
-    $set->insert($i);
+
+fscanf(STDIN, "%d%d", $L, $Q);
+$set->insert(0);
+$set->insert($L);
+for ($i = 0; $i < $Q; $i++) {
+  fscanf(STDIN, "%d%d", $c, $x);
+  if ($c == 1) {
+    $set->insert($x);
+  } else {
+    echo $set->lower_bound($x) - $set->prev_bound($x), "\n";
+  }
 }
-echo microtime(true) - $time;
